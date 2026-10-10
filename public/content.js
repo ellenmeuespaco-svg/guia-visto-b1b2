@@ -66,3 +66,52 @@ export const OFFICIAL_LINKS = [
 ];
 
 export const DS160_URL = 'https://ceac.state.gov/GenNIV/';
+
+// General orientation only. Never present fees, wait times or local procedures as current.
+export const FAQ = {
+  en: [
+    ['B1 or B2: what is the difference?', 'B1 covers certain temporary business activities (for example meetings or conferences). B2 covers tourism, leisure, visiting family or friends and some medical treatment. The right category depends on your real purpose. Neither allows you to work in the US.'],
+    ['Does the visa guarantee entry to the US?', 'No. The visa lets you ask for admission at a port of entry. The border officer decides whether you are admitted and for how long.'],
+    ['Which documents should I bring?', 'It varies by embassy or consulate. Follow the instructions on your embassy or consulate website. Supporting documents can help explain your situation but never guarantee approval, and the officer may or may not ask for them.'],
+    ['Should I buy tickets and hotels before the visa?', 'It is not required to answer the DS-160. Avoid non-refundable tickets and expensive bookings until the visa is issued, unless you knowingly accept that risk.'],
+    ['I was refused a visa before. What now?', 'Answer the DS-160 truthfully about any previous refusal. A previous refusal does not automatically bar a new application, but if you are unsure of the consequences, consult a qualified immigration attorney.'],
+    ['Who fills in the DS-160?', 'You do, on the official site, with true information. Review every answer before submitting. This app only helps you organize and understand; it never fills in or submits anything for you.'],
+    ['How much does it cost and how long does it take?', 'Fees, appointment availability and wait times change and vary by country. Confirm them only on the official site and the portal indicated by your embassy or consulate.'],
+    ['Any tips for the interview?', 'Answer what was asked, briefly and truthfully. Stay consistent with your DS-160. If you do not understand a question, ask for it to be repeated. Be calm and respectful. Do not memorize a script or invent anything.'],
+    ['What happens after the interview?', 'Follow exactly the instructions you receive from the consulate and the official delivery service about your passport. Timelines vary. When you receive the visa, check that all printed data is correct and seek official guidance if there is an error.'],
+    ['I have a complex situation (overstay, arrest, fraud, deportation).', 'This app cannot give legal advice. Consult a qualified immigration attorney before applying.'],
+    ['How do I avoid scams?', 'No one can guarantee a visa. Use only the official sites and the portal indicated by your embassy or consulate for payment and appointments. Never share passwords or your DS-160 confirmation code.']
+  ],
+  pt: [
+    ['B1 ou B2: qual a diferença?', 'O B1 cobre certas atividades temporárias de negócios (por exemplo reuniões ou conferências). O B2 cobre turismo, lazer, visita a familiares ou amigos e alguns tratamentos médicos. A categoria certa depende do seu propósito real. Nenhum dos dois permite trabalhar nos EUA.'],
+    ['O visto garante a entrada nos EUA?', 'Não. O visto permite solicitar admissão em um ponto de entrada. O oficial de fronteira decide se você será admitido e por quanto tempo.'],
+    ['Quais documentos devo levar?', 'Varia conforme a embaixada ou consulado. Siga as instruções no site da sua embaixada ou consulado. Documentos de apoio podem ajudar a explicar sua situação, mas não garantem aprovação, e o oficial pode ou não pedi-los.'],
+    ['Devo comprar passagens e hotéis antes do visto?', 'Não é necessário para responder a DS-160. Evite passagens não reembolsáveis e reservas caras até o visto ser emitido, a menos que aceite esse risco.'],
+    ['Já tive um visto recusado. E agora?', 'Responda a DS-160 com verdade sobre qualquer recusa anterior. Uma recusa anterior não impede automaticamente um novo pedido, mas se tiver dúvida sobre as consequências, consulte um advogado de imigração qualificado.'],
+    ['Quem preenche a DS-160?', 'Você, no site oficial, com informações verdadeiras. Revise cada resposta antes de enviar. Este app só ajuda a organizar e entender; ele nunca preenche nem envia nada por você.'],
+    ['Quanto custa e quanto tempo demora?', 'Taxas, vagas de agendamento e prazos mudam e variam por país. Confirme somente no site oficial e no portal indicado pela sua embaixada ou consulado.'],
+    ['Dicas para a entrevista?', 'Responda o que foi perguntado, de forma breve e verdadeira. Seja coerente com a DS-160. Se não entender uma pergunta, peça que seja repetida. Mantenha calma e respeito. Não decore roteiro nem invente nada.'],
+    ['O que acontece depois da entrevista?', 'Siga exatamente as instruções recebidas do consulado e do serviço oficial de entrega sobre o passaporte. Os prazos variam. Ao receber o visto, confira se todos os dados impressos estão corretos e busque orientação oficial se houver erro.'],
+    ['Tenho uma situação complexa (permanência irregular, prisão, fraude, deportação).', 'Este app não dá orientação jurídica. Consulte um advogado de imigração qualificado antes de solicitar.'],
+    ['Como evitar golpes?', 'Ninguém pode garantir um visto. Use apenas os sites oficiais e o portal indicado pela sua embaixada ou consulado para pagamento e agendamento. Nunca compartilhe senhas nem o código de confirmação da DS-160.']
+  ],
+  es: [
+    ['B1 o B2: ¿cuál es la diferencia?', 'El B1 cubre ciertas actividades temporales de negocios (por ejemplo reuniones o conferencias). El B2 cubre turismo, ocio, visita a familiares o amigos y algunos tratamientos médicos. La categoría correcta depende de tu propósito real. Ninguno permite trabajar en EE. UU.'],
+    ['¿La visa garantiza la entrada a EE. UU.?', 'No. La visa permite solicitar admisión en un punto de entrada. El oficial de frontera decide si te admite y por cuánto tiempo.'],
+    ['¿Qué documentos debo llevar?', 'Varía según la embajada o consulado. Sigue las instrucciones del sitio de tu embajada o consulado. Los documentos de apoyo pueden ayudar a explicar tu situación, pero no garantizan la aprobación, y el oficial puede o no pedirlos.'],
+    ['¿Debo comprar boletos y hoteles antes de la visa?', 'No es necesario para responder la DS-160. Evita boletos no reembolsables y reservas caras hasta que se emita la visa, salvo que aceptes ese riesgo.'],
+    ['Me negaron una visa antes. ¿Qué hago?', 'Responde la DS-160 con la verdad sobre cualquier rechazo previo. Un rechazo previo no impide automáticamente una nueva solicitud, pero si dudas de las consecuencias, consulta a un abogado de inmigración calificado.'],
+    ['¿Quién completa la DS-160?', 'Tú, en el sitio oficial, con información verdadera. Revisa cada respuesta antes de enviar. Esta app solo ayuda a organizar y entender; nunca completa ni envía nada por ti.'],
+    ['¿Cuánto cuesta y cuánto tarda?', 'Las tarifas, la disponibilidad de citas y los plazos cambian y varían por país. Confírmalos solo en el sitio oficial y en el portal indicado por tu embajada o consulado.'],
+    ['¿Consejos para la entrevista?', 'Responde lo que se pregunta, de forma breve y verdadera. Sé coherente con tu DS-160. Si no entiendes una pregunta, pide que la repitan. Mantén la calma y el respeto. No memorices un guion ni inventes nada.'],
+    ['¿Qué pasa después de la entrevista?', 'Sigue exactamente las instrucciones del consulado y del servicio oficial de entrega sobre tu pasaporte. Los plazos varían. Al recibir la visa, verifica que todos los datos impresos sean correctos y busca orientación oficial si hay un error.'],
+    ['Tengo una situación compleja (permanencia irregular, arresto, fraude, deportación).', 'Esta app no da asesoría legal. Consulta a un abogado de inmigración calificado antes de solicitar.'],
+    ['¿Cómo evitar estafas?', 'Nadie puede garantizar una visa. Usa solo los sitios oficiales y el portal indicado por tu embajada o consulado para pagos y citas. Nunca compartas contraseñas ni el código de confirmación de la DS-160.']
+  ]
+};
+
+export const SELFCHECK = {
+  en: ['I answered only what was asked.', 'My answer was clear and brief.', 'Everything I said is true.', 'It is consistent with my DS-160 and documents.', 'It was not a memorized script.'],
+  pt: ['Respondi apenas o que foi perguntado.', 'Minha resposta foi clara e breve.', 'Tudo o que disse é verdade.', 'Está coerente com minha DS-160 e documentos.', 'Não foi um roteiro decorado.'],
+  es: ['Respondí solo lo que se preguntó.', 'Mi respuesta fue clara y breve.', 'Todo lo que dije es verdad.', 'Es coherente con mi DS-160 y documentos.', 'No fue un guion memorizado.']
+};

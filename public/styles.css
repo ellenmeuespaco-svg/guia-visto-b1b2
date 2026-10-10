@@ -38,3 +38,7 @@ header select { width: auto; margin: 0; }
 .msg.user { align-self: flex-end; background: var(--brand); color: var(--brand-fg); }
 .msg.assistant { align-self: flex-start; background: var(--card); border: 1px solid var(--line); }
 .links li { margin: 8px 0; } a { color: var(--brand); }
+label.check { display: flex; align-items: center; gap: 8px; margin: 6px 0; color: var(--fg); }
+label.check input { width: auto; margin: 0; }
+details.card summary { cursor: pointer; font-weight: 600; }
+details.card p { margin-top: 8px; }

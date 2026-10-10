@@ -27,7 +27,8 @@ export const UI = {
     chat_ph: 'Ask the specialist team…', send: 'Send', thinking: 'Thinking…',
     err: 'Something went wrong. Try again in a moment.', limit: 'Daily limit reached. Try again tomorrow.',
     noai: 'The AI assistant is not enabled on this server yet. Checklists, questions and links still work.',
-    lang: 'Language'
+    lang: 'Language',
+    nav_faq: 'FAQ', faq_title: 'Frequently asked questions', sc_title: 'Self-check', sc_hint: 'Without AI, review your own answer with this checklist.'
   },
   pt: {
     title: 'Guia Visto B1/B2', tagline: 'Organize suas informações reais, entenda o processo e pratique sua entrevista.',
@@ -49,7 +50,8 @@ export const UI = {
     chat_ph: 'Pergunte à equipe de especialistas…', send: 'Enviar', thinking: 'Pensando…',
     err: 'Algo deu errado. Tente de novo em instantes.', limit: 'Limite diário atingido. Tente amanhã.',
     noai: 'O assistente de IA ainda não está ativado neste servidor. Checklists, perguntas e links continuam funcionando.',
-    lang: 'Idioma'
+    lang: 'Idioma',
+    nav_faq: 'Perguntas', faq_title: 'Perguntas frequentes', sc_title: 'Autoavaliação', sc_hint: 'Sem IA, revise sua própria resposta com este checklist.'
   },
   es: {
     title: 'Guía Visa B1/B2', tagline: 'Organiza tu información real, entiende el proceso y practica tu entrevista.',
@@ -71,7 +73,8 @@ export const UI = {
     chat_ph: 'Pregunta al equipo de especialistas…', send: 'Enviar', thinking: 'Pensando…',
     err: 'Algo salió mal. Inténtalo de nuevo en un momento.', limit: 'Límite diario alcanzado. Inténtalo mañana.',
     noai: 'El asistente de IA aún no está activado en este servidor. Las listas, preguntas y enlaces siguen funcionando.',
-    lang: 'Idioma'
+    lang: 'Idioma',
+    nav_faq: 'Preguntas', faq_title: 'Preguntas frecuentes', sc_title: 'Autoevaluación', sc_hint: 'Sin IA, revisa tu propia respuesta con esta lista.'
   },
   fr: {
     title: 'Guide Visa B1/B2', tagline: 'Organisez vos informations réelles, comprenez la procédure et entraînez-vous à l’entretien.',

@@ -1,5 +1,5 @@
 import { LANGS, RTL, UI } from './i18n.js';
-import { STEPS, DS160, QUESTIONS, OFFICIAL_LINKS, DS160_URL } from './content.js';
+import { STEPS, DS160, QUESTIONS, OFFICIAL_LINKS, DS160_URL, FAQ, SELFCHECK } from './content.js';
 
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
@@ -37,7 +37,7 @@ async function ask(mode, messages) {
   return data.reply;
 }
 
-const noAiBanner = () => (aiOn ? null : h('p', { class: 'notice' }, t('noai')));
+const noAiBanner = () => null; // AI-only controls are hidden when the AI is off, so no banner is needed
 
 /* ---------- views ---------- */
 function viewHome() {
@@ -62,10 +62,10 @@ function viewDs160() {
       h('label', {}, h('select', {
         onchange: (e) => { state[sec.id] = e.target.value; store.set('ds', state); }
       }, opts.map((o) => h('option', { value: o, selected: (state[sec.id] || 'pending') === o }, t('st_' + o))))),
-      h('button', { class: 'link', onclick: () => {
+      aiOn ? h('button', { class: 'link', onclick: () => {
         pendingChatPrefill = `DS-160: ${pick(sec.t)}`;
         location.hash = '#/chat';
-      } }, t('ds_ask'))
+      } }, t('ds_ask')) : null
     ))
   );
 }
@@ -88,11 +88,13 @@ function viewInterview() {
       out.textContent = await ask('interview', [{ role: 'user', content: `Question: ${current}\nMy answer: ${ans.value}` }]);
     } catch (e) { out.textContent = e.message; }
   } }, t('int_feedback'));
-  if (!aiOn) fb.disabled = true;
+  const newQ = h('button', { class: 'btn secondary', onclick: next }, t('int_start'));
+  const selfCheck = h('div', { class: 'card' }, h('h3', {}, t('sc_title')), h('p', {}, t('sc_hint')),
+    (pick(SELFCHECK)).map((item) => h('label', { class: 'check' }, h('input', { type: 'checkbox' }), ' ' + item)));
   return h('section', {},
-    h('p', {}, t('int_intro')), noAiBanner(), qEl, ans,
-    h('div', { class: 'row' }, fb, h('button', { class: 'btn secondary', onclick: next }, t('int_start'))),
-    out, h('p', { class: 'notice' }, t('int_tips'))
+    h('p', {}, t('int_intro')), qEl, ans,
+    h('div', { class: 'row' }, aiOn ? fb : null, newQ),
+    aiOn ? out : selfCheck, h('p', { class: 'notice' }, t('int_tips'))
   );
 }
 
@@ -131,7 +133,7 @@ function viewTravel() {
     h('div', { class: 'row' }, field('n', 'number', t('tr_travelers'), { min: 1, max: 20 }),
       h('label', {}, t('tr_profile'), profile)),
     field('budget', 'text', t('tr_budget'), { maxlength: 60 }),
-    gen, h('h3', {}, t('tr_links')), links, out
+    aiOn ? gen : null, h('h3', {}, t('tr_links')), links, out
   );
 }
 
@@ -139,6 +141,14 @@ function viewConsulate() {
   return h('section', {},
     h('p', {}, t('con_intro')),
     h('ul', { class: 'links' }, OFFICIAL_LINKS.map((l) => h('li', {}, h('a', { href: l.url, target: '_blank', rel: 'noopener noreferrer' }, l.label)))),
+    h('p', { class: 'notice' }, t('disclaimer'))
+  );
+}
+
+function viewFaq() {
+  return h('section', {},
+    h('h2', {}, t('faq_title')),
+    pick(FAQ).map(([q, a]) => h('details', { class: 'card' }, h('summary', {}, q), h('p', {}, a))),
     h('p', { class: 'notice' }, t('disclaimer'))
   );
 }
@@ -169,8 +179,8 @@ function viewChat() {
 }
 
 /* ---------- shell ---------- */
-const ROUTES = { '': viewHome, home: viewHome, ds160: viewDs160, interview: viewInterview, travel: viewTravel, consulate: viewConsulate, chat: viewChat };
-const NAV = [['home', 'nav_home'], ['ds160', 'nav_ds'], ['interview', 'nav_interview'], ['travel', 'nav_travel'], ['consulate', 'nav_consulate'], ['chat', 'nav_chat']];
+const ROUTES = { '': viewHome, home: viewHome, ds160: viewDs160, interview: viewInterview, travel: viewTravel, consulate: viewConsulate, faq: viewFaq, chat: () => (aiOn ? viewChat() : viewFaq()) };
+const navItems = () => [['home', 'nav_home'], ['ds160', 'nav_ds'], ['interview', 'nav_interview'], ['travel', 'nav_travel'], ['faq', 'nav_faq'], ['consulate', 'nav_consulate'], ...(aiOn ? [['chat', 'nav_chat']] : [])];
 
 function render() {
   document.documentElement.lang = lang;
@@ -180,7 +190,7 @@ function render() {
   const view = (ROUTES[route] || viewHome)();
   const select = h('select', { 'aria-label': t('lang'), onchange: (e) => { lang = e.target.value; store.set('lang', lang); render(); } },
     Object.entries(LANGS).map(([code, name]) => h('option', { value: code, selected: code === lang }, name)));
-  const nav = h('nav', {}, NAV.map(([r, k]) => h('a', { href: '#/' + r, class: (route || 'home') === r ? 'active' : '' }, t(k))));
+  const nav = h('nav', {}, navItems().map(([r, k]) => h('a', { href: '#/' + r, class: (route || 'home') === r ? 'active' : '' }, t(k))));
   document.getElementById('app').replaceChildren(
     h('header', {}, h('h1', {}, t('title')), select), nav, h('main', {}, view));
 }
