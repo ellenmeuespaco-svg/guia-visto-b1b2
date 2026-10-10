@@ -1,5 +1,6 @@
 import { LANGS, RTL, UI } from './i18n.js';
-import { STEPS, DS160, QUESTIONS, OFFICIAL_LINKS, DS160_URL, FAQ, SELFCHECK, PLAN } from './content.js';
+import { STEPS, DS160, OFFICIAL_LINKS, DS160_URL, FAQ, PLAN } from './content.js';
+import { viewInterview as viewInterviewModule } from './interview.js';
 
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
@@ -70,33 +71,7 @@ function viewDs160() {
   );
 }
 
-function viewInterview() {
-  const qs = pick(QUESTIONS) || QUESTIONS.en;
-  let current = null;
-  const qEl = h('p', { class: 'question' });
-  const ans = h('textarea', { rows: 4, placeholder: t('int_answer_ph'), maxlength: 1500 });
-  const out = h('div', { class: 'reply' });
-  const next = () => {
-    current = qs[Math.floor(Math.random() * qs.length)];
-    qEl.textContent = current; ans.value = ''; out.textContent = '';
-  };
-  next();
-  const fb = h('button', { class: 'btn', onclick: async () => {
-    if (!ans.value.trim()) return;
-    out.textContent = t('thinking');
-    try {
-      out.textContent = await ask('interview', [{ role: 'user', content: `Question: ${current}\nMy answer: ${ans.value}` }]);
-    } catch (e) { out.textContent = e.message; }
-  } }, t('int_feedback'));
-  const newQ = h('button', { class: 'btn secondary', onclick: next }, t('int_start'));
-  const selfCheck = h('div', { class: 'card' }, h('h3', {}, t('sc_title')), h('p', {}, t('sc_hint')),
-    (pick(SELFCHECK)).map((item) => h('label', { class: 'check' }, h('input', { type: 'checkbox' }), ' ' + item)));
-  return h('section', {},
-    h('p', {}, t('int_intro')), qEl, ans,
-    h('div', { class: 'row' }, aiOn ? fb : null, newQ),
-    aiOn ? out : selfCheck, h('p', { class: 'notice' }, t('int_tips'))
-  );
-}
+const viewInterview = () => viewInterviewModule({ h, store, ask, lang: () => lang, aiOn: () => aiOn });
 
 function viewTravel() {
   const f = store.get('trip', { dest: '', from: '', to: '', n: 1, profile: 'value', budget: '' });

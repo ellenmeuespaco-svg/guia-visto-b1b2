@@ -42,3 +42,51 @@ label.check { display: flex; align-items: center; gap: 8px; margin: 6px 0; color
 label.check input { width: auto; margin: 0; }
 details.card summary { cursor: pointer; font-weight: 600; }
 details.card p { margin-top: 8px; }
+
+/* ---------- interview ("visa dream") ---------- */
+.iv { --sky: #1d4ed8; --violet: #6d28d9; --sun: #f97316; }
+.iv-hero { position: relative; overflow: hidden; border-radius: 22px; padding: 22px 20px; min-height: 150px; color: #fff;
+  background: radial-gradient(circle at 85% 20%, rgba(253,230,138,.55), transparent 40%), linear-gradient(135deg, var(--sky) 0%, var(--violet) 58%, var(--sun) 125%);
+  box-shadow: 0 10px 30px rgba(29,78,216,.28); }
+.iv-hero.small { min-height: 0; padding: 18px 20px; }
+.iv-hero-text { position: relative; z-index: 1; max-width: 70%; }
+.iv-hero h2 { margin: 0 0 6px; font-size: 1.5rem; line-height: 1.15; }
+.iv-hero p { margin: 0; opacity: .95; font-size: .95rem; }
+.iv-hero-art { position: absolute; right: -8px; bottom: -6px; width: 190px; opacity: .95; }
+.iv-hero-art svg { width: 100%; height: auto; display: block; }
+.iv-hero.small .iv-hero-text { max-width: 100%; }
+.iv-warn { margin: 12px 0; padding: 10px 12px; border-radius: 12px; font-size: .86rem; background: var(--warn-bg); color: var(--warn-fg); }
+.iv-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 14px 0; }
+.iv-btn { border: 1.5px solid var(--brand); background: transparent; color: var(--brand); border-radius: 14px; padding: 12px 18px; font: inherit; font-weight: 700; cursor: pointer; }
+.iv-btn.primary { background: linear-gradient(135deg, var(--sky), var(--violet)); border-color: transparent; color: #fff; box-shadow: 0 6px 16px rgba(109,40,217,.3); }
+.iv-btn.ghost { border-color: var(--line); color: var(--fg); }
+.iv-h { margin: 22px 0 8px; font-size: 1rem; }
+.iv-muted { color: var(--muted); font-size: .9rem; } .iv-fine { color: var(--muted); font-size: .78rem; margin: 6px 0 0; }
+.iv-row { display: flex; align-items: center; gap: 12px; width: 100%; text-align: start; margin: 8px 0; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); color: var(--fg); font: inherit; cursor: pointer; }
+.iv-row-main { flex: 1; } .iv-row-main small { color: var(--muted); } .iv-view { color: var(--brand); font-weight: 600; }
+.iv-stamp { display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; border: 2.5px double var(--violet); color: var(--violet); font-weight: 800; font-size: .85rem; transform: rotate(-8deg); }
+.iv-progress { display: flex; gap: 6px; margin: 4px 0 8px; }
+.iv-dot { flex: 1; height: 8px; border-radius: 99px; background: var(--line); }
+.iv-dot.done { background: var(--brand); } .iv-dot.cur { background: linear-gradient(90deg, var(--violet), var(--sun)); }
+.iv-qcard { border-radius: 20px; padding: 20px; margin: 8px 0 14px; color: #fff; background: linear-gradient(135deg, #1e3a8a, var(--violet)); box-shadow: 0 8px 22px rgba(30,58,138,.3); }
+.iv-q { font-size: 1.35rem; font-weight: 800; line-height: 1.25; margin: 0 0 10px; }
+.iv-hint { margin: 0; font-size: .9rem; opacity: .92; }
+.iv-answer { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px; margin-bottom: 14px; }
+.iv-microw { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.iv-status { margin: 2px 0 0; }
+.iv-mic { flex: none; width: 60px; height: 60px; border-radius: 50%; border: 0; font-size: 1.6rem; cursor: pointer; color: #fff; background: linear-gradient(135deg, var(--sky), var(--violet)); box-shadow: 0 6px 16px rgba(29,78,216,.35); }
+.iv-mic:disabled { opacity: .4; cursor: not-allowed; }
+.iv-mic.rec { background: #dc2626; animation: iv-pulse 1.2s infinite; }
+@keyframes iv-pulse { 0% { box-shadow: 0 0 0 0 rgba(220,38,38,.5); } 100% { box-shadow: 0 0 0 16px rgba(220,38,38,0); } }
+.iv-right { text-align: end; margin-top: 4px; }
+.iv-score { display: flex; align-items: center; gap: 16px; margin: 16px 0; }
+.iv-ring { flex: none; width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 1.15rem;
+  background: conic-gradient(var(--violet) calc(var(--p) * 1%), var(--line) 0); position: relative; }
+.iv-ring::before { content: ''; position: absolute; inset: 9px; border-radius: 50%; background: var(--bg); }
+.iv-ring span { position: relative; }
+.iv-bar { height: 8px; border-radius: 99px; background: var(--line); margin: 8px 0; overflow: hidden; }
+.iv-bar span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--violet), var(--sun)); }
+.iv-quote { border-inline-start: 3px solid var(--violet); padding-inline-start: 10px; margin: 8px 0; color: var(--fg); white-space: pre-wrap; }
+.iv-flag { margin: 4px 0; color: var(--sun); font-size: .9rem; }
+.iv-guide { border-color: var(--violet); }
+@media (max-width: 420px) { .iv-hero-text { max-width: 62%; } .iv-hero-art { width: 150px; opacity: .8; } }
