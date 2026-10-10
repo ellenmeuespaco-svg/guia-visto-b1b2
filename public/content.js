@@ -110,6 +110,52 @@ export const FAQ = {
   ]
 };
 
+// Trip plan template (fill-in by hand, no AI). Generic criteria only: no invented places, prices or deals.
+export const PLAN = {
+  en: {
+    title: 'Trip plan template', day: 'Day', morning: 'Morning', afternoon: 'Afternoon', evening: 'Evening',
+    notes: 'Where / what / notes', tips: 'Tips for this focus', budget: 'Budget (your currency)', total: 'Total', copy: 'Copy plan as text', copied: 'Copied!',
+    nodates: 'Pick the dates above to size the plan. Showing 3 days for now.',
+    visa: 'Visa coherence check',
+    budgetItems: { flights: 'Flights', lodging: 'Lodging', transport: 'Local transport', food: 'Food', tickets: 'Tours and tickets', insurance: 'Insurance', other: 'Other / buffer' },
+    visaItems: ['The plan matches the purpose I will state on the DS-160 and in the interview.', 'Dates and length fit my real leave and commitments.', 'I know who pays for each item.', 'Flights and lodging are refundable, or I accept the risk until the visa is issued.', 'Nothing in the plan involves working or studying in the US.'],
+    tipsByProfile: {
+      value: ['Compare total cost, not just the nightly price (taxes, fees, transport to the center).', 'Look for free or low-cost attractions; buy city passes only if you will use them.', 'Prefer lodging near public transport.', 'Compare options and prefer refundable rates before paying.', 'Keep a buffer of about 10% of the budget.'],
+      luxury: ['Define your priorities: location, service, dining, privacy, spa.', 'Read cancellation terms carefully on high-value reservations.', 'Reserve special dinners or private tours in advance, with refundable terms when possible.', 'Leave rest time between activities.', 'Confirm transfers between airport, hotel and sights.'],
+      family: ['Check lodging has room for everyone and food nearby.', 'Plan fewer activities per day and a midday rest for children.', 'Look for family tickets and age discounts on official sites.', 'Keep documents and contacts of every traveler together.', 'Prefer central locations to cut transit time.'],
+      adventure: ['Check season, weather and safety for each activity on official sources.', 'Confirm age, fitness and equipment requirements.', 'Verify operators are licensed and read cancellation terms.', 'Consider insurance that covers the activities.', 'Leave spare days for weather changes.']
+    }
+  },
+  pt: {
+    title: 'Modelo de roteiro de viagem', day: 'Dia', morning: 'Manhã', afternoon: 'Tarde', evening: 'Noite',
+    notes: 'Onde / o quê / anotações', tips: 'Dicas para este foco', budget: 'Orçamento (sua moeda)', total: 'Total', copy: 'Copiar roteiro como texto', copied: 'Copiado!',
+    nodates: 'Escolha as datas acima para dimensionar o roteiro. Mostrando 3 dias por enquanto.',
+    visa: 'Checagem de coerência com o visto',
+    budgetItems: { flights: 'Voos', lodging: 'Hospedagem', transport: 'Transporte local', food: 'Alimentação', tickets: 'Passeios e ingressos', insurance: 'Seguro', other: 'Outros / reserva' },
+    visaItems: ['O roteiro condiz com o propósito que vou declarar na DS-160 e na entrevista.', 'As datas e a duração cabem nas minhas férias e compromissos reais.', 'Sei quem paga cada item.', 'Voos e hospedagem são reembolsáveis, ou aceito o risco até o visto ser emitido.', 'Nada no roteiro envolve trabalhar ou estudar nos EUA.'],
+    tipsByProfile: {
+      value: ['Compare o custo total, não só a diária (taxas, impostos, transporte até o centro).', 'Procure atrações gratuitas ou baratas; compre passes de cidade só se for usar.', 'Prefira hospedagem perto do transporte público.', 'Compare opções e prefira tarifas reembolsáveis antes de pagar.', 'Guarde cerca de 10% do orçamento como reserva.'],
+      luxury: ['Defina suas prioridades: localização, serviço, gastronomia, privacidade, spa.', 'Leia com atenção as regras de cancelamento das reservas de maior valor.', 'Reserve jantares especiais ou passeios privativos com antecedência, com condições reembolsáveis quando possível.', 'Deixe tempo de descanso entre as atividades.', 'Confirme traslados entre aeroporto, hotel e atrações.'],
+      family: ['Veja se a hospedagem acomoda todos e se há comida por perto.', 'Planeje menos atividades por dia e descanso no meio do dia para as crianças.', 'Procure ingressos família e descontos por idade nos sites oficiais.', 'Mantenha juntos os documentos e contatos de todos os viajantes.', 'Prefira locais centrais para reduzir deslocamentos.'],
+      adventure: ['Confira estação, clima e segurança de cada atividade em fontes oficiais.', 'Confirme exigências de idade, condicionamento e equipamento.', 'Verifique se os operadores são licenciados e leia as regras de cancelamento.', 'Considere um seguro que cubra as atividades.', 'Deixe dias de folga para mudanças de clima.']
+    }
+  },
+  es: {
+    title: 'Plantilla de plan de viaje', day: 'Día', morning: 'Mañana', afternoon: 'Tarde', evening: 'Noche',
+    notes: 'Dónde / qué / notas', tips: 'Consejos para este enfoque', budget: 'Presupuesto (tu moneda)', total: 'Total', copy: 'Copiar plan como texto', copied: '¡Copiado!',
+    nodates: 'Elige las fechas arriba para dimensionar el plan. Mostrando 3 días por ahora.',
+    visa: 'Revisión de coherencia con la visa',
+    budgetItems: { flights: 'Vuelos', lodging: 'Alojamiento', transport: 'Transporte local', food: 'Comida', tickets: 'Tours y entradas', insurance: 'Seguro', other: 'Otros / reserva' },
+    visaItems: ['El plan coincide con el propósito que declararé en la DS-160 y en la entrevista.', 'Las fechas y la duración encajan con mis vacaciones y compromisos reales.', 'Sé quién paga cada rubro.', 'Vuelos y alojamiento son reembolsables, o acepto el riesgo hasta que se emita la visa.', 'Nada en el plan implica trabajar o estudiar en EE. UU.'],
+    tipsByProfile: {
+      value: ['Compara el costo total, no solo el precio por noche (impuestos, tarifas, transporte al centro).', 'Busca atracciones gratuitas o económicas; compra pases de ciudad solo si los usarás.', 'Prefiere alojamiento cerca del transporte público.', 'Compara opciones y prefiere tarifas reembolsables antes de pagar.', 'Reserva cerca del 10% del presupuesto como colchón.'],
+      luxury: ['Define tus prioridades: ubicación, servicio, gastronomía, privacidad, spa.', 'Lee con atención las políticas de cancelación de las reservas de mayor valor.', 'Reserva cenas especiales o tours privados con anticipación, con condiciones reembolsables si es posible.', 'Deja tiempo de descanso entre actividades.', 'Confirma traslados entre aeropuerto, hotel y atracciones.'],
+      family: ['Verifica que el alojamiento tenga espacio para todos y comida cerca.', 'Planea menos actividades por día y descanso al mediodía para los niños.', 'Busca entradas familiares y descuentos por edad en sitios oficiales.', 'Mantén juntos los documentos y contactos de todos los viajeros.', 'Prefiere zonas céntricas para reducir traslados.'],
+      adventure: ['Revisa temporada, clima y seguridad de cada actividad en fuentes oficiales.', 'Confirma requisitos de edad, condición física y equipo.', 'Verifica que los operadores tengan licencia y lee las políticas de cancelación.', 'Considera un seguro que cubra las actividades.', 'Deja días libres por cambios de clima.']
+    }
+  }
+};
+
 export const SELFCHECK = {
   en: ['I answered only what was asked.', 'My answer was clear and brief.', 'Everything I said is true.', 'It is consistent with my DS-160 and documents.', 'It was not a memorized script.'],
   pt: ['Respondi apenas o que foi perguntado.', 'Minha resposta foi clara e breve.', 'Tudo o que disse é verdade.', 'Está coerente com minha DS-160 e documentos.', 'Não foi um roteiro decorado.'],

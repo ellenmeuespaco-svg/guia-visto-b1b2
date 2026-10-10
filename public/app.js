@@ -1,5 +1,5 @@
 import { LANGS, RTL, UI } from './i18n.js';
-import { STEPS, DS160, QUESTIONS, OFFICIAL_LINKS, DS160_URL, FAQ, SELFCHECK } from './content.js';
+import { STEPS, DS160, QUESTIONS, OFFICIAL_LINKS, DS160_URL, FAQ, SELFCHECK, PLAN } from './content.js';
 
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
@@ -101,8 +101,8 @@ function viewInterview() {
 function viewTravel() {
   const f = store.get('trip', { dest: '', from: '', to: '', n: 1, profile: 'value', budget: '' });
   const field = (key, type, label, extra = {}) => h('label', {}, label,
-    h('input', { type, value: f[key], ...extra, oninput: (e) => { f[key] = e.target.value; store.set('trip', f); refreshLinks(); } }));
-  const profile = h('select', { onchange: (e) => { f.profile = e.target.value; store.set('trip', f); } },
+    h('input', { type, value: f[key], ...extra, oninput: (e) => { f[key] = e.target.value; store.set('trip', f); refreshLinks(); renderPlan(); } }));
+  const profile = h('select', { onchange: (e) => { f.profile = e.target.value; store.set('trip', f); renderPlan(); } },
     ['value', 'luxury', 'family', 'adventure'].map((p) => h('option', { value: p, selected: f.profile === p }, t('prof_' + p))));
   const links = h('div', { class: 'row wrap' });
   const out = h('div', { class: 'reply' });
@@ -118,6 +118,62 @@ function viewTravel() {
     );
   }
   refreshLinks();
+
+  // Hand-filled plan template: saved only on this device.
+  const L = pick(PLAN);
+  const plan = store.get('plan', { days: {}, budget: {} });
+  const planBox = h('div', {});
+  const MS_DAY = 86400000;
+  function tripDays() {
+    const a = Date.parse(f.from), b = Date.parse(f.to);
+    if (Number.isNaN(a) || Number.isNaN(b) || b < a) return { n: 3, start: null };
+    return { n: Math.min(Math.round((b - a) / MS_DAY) + 1, 21), start: a };
+  }
+  function planText() {
+    const { n, start } = tripDays();
+    const lines = [`${f.dest || L.title}`];
+    for (let i = 0; i < n; i++) {
+      const d = plan.days[i] || {};
+      const date = start === null ? '' : ` (${new Date(start + i * MS_DAY).toISOString().slice(0, 10)})`;
+      lines.push(`\n${L.day} ${i + 1}${date}`);
+      for (const s of ['morning', 'afternoon', 'evening']) if (d[s]) lines.push(`- ${L[s]}: ${d[s]}`);
+    }
+    lines.push(`\n${L.budget}`);
+    for (const [k, label] of Object.entries(L.budgetItems)) if (plan.budget[k]) lines.push(`- ${label}: ${plan.budget[k]}`);
+    lines.push(`${L.total}: ${budgetTotal()}`);
+    return lines.join('\n');
+  }
+  const budgetTotal = () => Object.values(plan.budget).reduce((s, v) => s + (Number(v) || 0), 0);
+  function renderPlan() {
+    const { n, start } = tripDays();
+    const totalEl = h('strong', {}, String(budgetTotal()));
+    const copyBtn = h('button', { class: 'btn secondary', onclick: async () => {
+      try { await navigator.clipboard.writeText(planText()); copyBtn.textContent = L.copied; } catch { /* clipboard unavailable */ }
+    } }, L.copy);
+    const days = Array.from({ length: n }, (_, i) => {
+      const date = start === null ? '' : ' · ' + new Date(start + i * MS_DAY).toLocaleDateString(lang, { timeZone: 'UTC', weekday: 'short', day: 'numeric', month: 'short' });
+      return h('div', { class: 'card' }, h('h3', {}, `${L.day} ${i + 1}${date}`),
+        ['morning', 'afternoon', 'evening'].map((s) => h('label', {}, L[s],
+          h('textarea', { rows: 2, maxlength: 400, placeholder: L.notes, oninput: (e) => {
+            plan.days[i] = { ...(plan.days[i] || {}), [s]: e.target.value }; store.set('plan', plan);
+          } }, plan.days[i]?.[s] || ''))));
+    });
+    const budget = h('div', { class: 'card' }, h('h3', {}, L.budget),
+      Object.entries(L.budgetItems).map(([k, label]) => h('label', {}, label,
+        h('input', { type: 'number', min: 0, value: plan.budget[k] ?? '', oninput: (e) => {
+          plan.budget[k] = e.target.value; store.set('plan', plan); totalEl.textContent = String(budgetTotal());
+        } }))),
+      h('p', {}, `${L.total}: `, totalEl));
+    planBox.replaceChildren(...[
+      h('h2', {}, L.title),
+      start === null ? h('p', { class: 'notice' }, L.nodates) : null,
+      h('div', { class: 'card' }, h('h3', {}, L.tips), h('ul', {}, L.tipsByProfile[f.profile].map((x) => h('li', {}, x)))),
+      days, budget,
+      h('div', { class: 'card' }, h('h3', {}, L.visa), L.visaItems.map((x) => h('label', { class: 'check' }, h('input', { type: 'checkbox' }), ' ' + x))),
+      copyBtn].flat().filter(Boolean));
+  }
+  renderPlan();
+
   const gen = h('button', { class: 'btn', onclick: async () => {
     if (!f.dest.trim()) return;
     out.textContent = t('thinking');
@@ -133,7 +189,7 @@ function viewTravel() {
     h('div', { class: 'row' }, field('n', 'number', t('tr_travelers'), { min: 1, max: 20 }),
       h('label', {}, t('tr_profile'), profile)),
     field('budget', 'text', t('tr_budget'), { maxlength: 60 }),
-    aiOn ? gen : null, h('h3', {}, t('tr_links')), links, out
+    aiOn ? gen : null, h('h3', {}, t('tr_links')), links, out, planBox
   );
 }
 
